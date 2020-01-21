@@ -16,6 +16,6 @@ public class StringIdToUserConverter implements Converter<String, User> {
 
     @Override
     public User convert(String id) {
-        return userRepository.findUserById(Long.valueOf(id));
+        return userRepository.findById(Long.valueOf(id)).orElse(null);
     }
 }

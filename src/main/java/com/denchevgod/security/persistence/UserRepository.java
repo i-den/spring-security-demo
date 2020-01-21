@@ -1,14 +1,9 @@
 package com.denchevgod.security.persistence;
 
 import com.denchevgod.security.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Iterable<User> findAll();
-
-    User save(User user);
-
-    User findUserById(Long id);
-
-    void deleteUser(Long id);
+    User findByEmail(String email);
 }

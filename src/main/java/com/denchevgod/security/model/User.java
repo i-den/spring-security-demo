@@ -3,19 +3,24 @@ package com.denchevgod.security.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Calendar;
 
 @Getter
 @Setter
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "Username is required")
     private String username;
 
+    @Email
     @NotEmpty(message = "Email is required")
     private String email;
 

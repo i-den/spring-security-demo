@@ -21,7 +21,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception { // @formatter:off
         http
                 .authorizeRequests()
                 .antMatchers("/signup", "/user/register").permitAll()
@@ -38,7 +38,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                     .csrf().disable();
-    }
+    } // @formatter:on
 
     @Bean
     public PasswordEncoder passwordEncoder() {

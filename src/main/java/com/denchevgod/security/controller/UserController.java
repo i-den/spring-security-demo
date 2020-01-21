@@ -2,6 +2,8 @@ package com.denchevgod.security.controller;
 
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.persistence.UserRepository;
+import com.denchevgod.security.service.UserService;
+import com.denchevgod.security.validation.EmailExistsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,20 +14,24 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
+    private final UserService userService;
+
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @RequestMapping
     public ModelAndView list() {
-        Iterable<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll();
         return new ModelAndView("users/list", "users", users);
     }
 
@@ -44,15 +50,24 @@ public class UserController {
         if (result.hasErrors()) {
             return new ModelAndView("users/form", "formErrors", result.getAllErrors());
         }
-        user = userRepository.save(user);
-        redirect.addFlashAttribute("globalMessage", "Successfully created a new user");
-        return new ModelAndView("redirect:/{user.id}", "user.id", user.getId());
+        try {
+            if (user.getId() == null) {
+                userService.registerNewUser(user);
+                redirect.addFlashAttribute("globalMessage", "Successfully registered a new user");
+            } else {
+                userService.updateExistingUser(user);
+                redirect.addFlashAttribute("globalMessage", "Successfully edited the user");
+            }
+        } catch (EmailExistsException e) {
+            e.printStackTrace();
+        }
+        return new ModelAndView("redirect:/user/{user.id}", "user.id", user.getId());
     }
 
     @RequestMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
-        userRepository.deleteUser(id);
-        return new ModelAndView("redirect:/");
+        userRepository.findById(id).ifPresent(userRepository::delete);
+        return new ModelAndView("redirect:/user");
     }
 
     @RequestMapping(value = "modify/{id}", method = RequestMethod.GET)

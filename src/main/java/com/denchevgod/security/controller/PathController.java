@@ -11,5 +11,8 @@ public class PathController {
         return "login";
     }
 
-
+    @RequestMapping("/")
+    public String home() {
+        return "redirect:/user";
+    }
 }
