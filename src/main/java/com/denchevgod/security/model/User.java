@@ -16,9 +16,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotEmpty(message = "Username is required")
-    private String username;
+//
+//    @NotEmpty(message = "Username is required")
+//    private String username;
 
     @Email
     @NotEmpty(message = "Email is required")

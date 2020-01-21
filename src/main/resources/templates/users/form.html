@@ -19,10 +19,6 @@
 
         <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'">
 
-        <label>Username
-            <input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')} ? 'field-error'">
-        </label>
-
         <label>Email
             <input type="email" th:field="*{email}" th:class="${#fields.hasErrors('email')} ? 'field-error'">
         </label>

@@ -4,6 +4,7 @@ import com.denchevgod.security.model.User;
 import com.denchevgod.security.persistence.UserRepository;
 import com.denchevgod.security.service.UserService;
 import com.denchevgod.security.validation.EmailExistsException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
