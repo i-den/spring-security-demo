@@ -25,10 +25,12 @@ public class BasicPathController {
         return "index";
     }
 
+    //-------------- Login --------------------------------------------------
     @RequestMapping(path = "login",method = RequestMethod.GET)
     public String login() {
         return "system/login";
     }
+    //-------------- Login --------------------------------------------------
 
     //-------------- Register -----------------------------------------------
     @RequestMapping(path = "register",method = RequestMethod.GET)
