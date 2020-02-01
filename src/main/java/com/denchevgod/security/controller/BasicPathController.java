@@ -3,6 +3,7 @@ package com.denchevgod.security.controller;
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,13 +37,15 @@ public class BasicPathController {
     }
 
     @RequestMapping(path = "register", method = RequestMethod.POST)
-    public String handleRegister(@Valid User user, BindingResult bindingResult) {
+    public String handleRegister(@Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            throw new RuntimeException("Reg failed");
+            model.addAttribute("registrationError", bindingResult.getAllErrors());
+            return "system/register";
         }
-
-
+        userService.saveNewUser(user);
+        model.addAttribute("successfulRegistration", "Successfully Register a new User");
+        return "redirect:/";
     }
-
+    //-------------- Register -----------------------------------------------
 
 }
