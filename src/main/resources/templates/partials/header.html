@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security Intro</title>
+</head>
+<body>
+<header th:fragment="header">
+    <nav>
+        <ul>
+            <li><a th:href="@{'/'}">Home</a></li>
+            <li><a th:href="@{'/register'}">Register</a></li>
+            <li><a th:href="@{'/login'}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>
