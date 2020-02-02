@@ -13,11 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-public class BasicPathController {
+public class SystemController {
 
     private final UserService userService;
 
-    public BasicPathController(UserService userService) {
+    public SystemController(UserService userService) {
         this.userService = userService;
     }
 

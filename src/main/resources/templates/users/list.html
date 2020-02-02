@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users : List</title>
+</head>
+<body>
+<header th:replace="partials/header :: header"></header>
+<section th:if="${!users.isEmpty()}">
+    <table border="1 px solid black">
+        <caption>Listing Users</caption>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td><a th:href="@{'/users/' + ${user.id}}">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>
