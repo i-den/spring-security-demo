@@ -25,6 +25,9 @@
         <p>
             <button type="submit">Register</button>
         </p>
+        <footer th:if="${registrationError != null}">
+            <p th:each="error : ${registrationError}" th:text="${error}"></p>
+        </footer>
     </form>
 
 </section>

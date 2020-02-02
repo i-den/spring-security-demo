@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -25,12 +26,14 @@ public class BasicPathController {
         return "index";
     }
 
+
     //-------------- Login --------------------------------------------------
     @RequestMapping(path = "login",method = RequestMethod.GET)
     public String login() {
         return "system/login";
     }
     //-------------- Login --------------------------------------------------
+
 
     //-------------- Register -----------------------------------------------
     @RequestMapping(path = "register",method = RequestMethod.GET)
@@ -39,13 +42,13 @@ public class BasicPathController {
     }
 
     @RequestMapping(path = "register", method = RequestMethod.POST)
-    public String handleRegister(@Valid User user, BindingResult bindingResult, Model model) {
+    public String handleRegister(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirect) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("registrationError", bindingResult.getAllErrors());
             return "system/register";
         }
         userService.saveNewUser(user);
-        model.addAttribute("successfulRegistration", "Successfully Register a new User");
+        redirect.addFlashAttribute("successfulRegistration", "Successfully Registered a new User - " + user.getUsername());
         return "redirect:/";
     }
     //-------------- Register -----------------------------------------------
