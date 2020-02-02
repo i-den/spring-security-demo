@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -29,11 +30,21 @@ public class UserController {
 
     // TODO: Add Exception Handling
     @RequestMapping("/users/{id}")
-    public ModelAndView showUser(@PathVariable String id) {
+    public ModelAndView showUser(@PathVariable("id") String id) {
         Optional<User> user = userRepository.findById(Long.valueOf(id));
         if (!user.isPresent()) {
             throw new RuntimeException("User not found");
         }
         return new ModelAndView("/users/show", "user", user.get());
+    }
+
+    @RequestMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable("id") String id, RedirectAttributes redirect) {
+        User userToDelete = userRepository.findById(Long.valueOf(id)).orElse(null);
+        if (userToDelete != null) {
+            userRepository.delete(userToDelete);
+            redirect.addFlashAttribute("deletedUser", "Deleted User " + userToDelete.getUsername());
+        }
+        return "redirect:/";
     }
 }

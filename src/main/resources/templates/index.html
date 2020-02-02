@@ -8,5 +8,6 @@
 <header th:replace="partials/header :: header"></header>
 
 <p th:if="${successfulRegistration}" th:text="${successfulRegistration}">"Successfully Registered a new User - " + user.getUsername()</p>
+<p th:if="${deletedUser}" th:text="${deletedUser}">"Successfully Registered a new User - " + user.getUsername()</p>
 </body>
 </html>
