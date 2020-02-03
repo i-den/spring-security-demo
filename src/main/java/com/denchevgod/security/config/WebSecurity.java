@@ -26,6 +26,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/users/delete/**").hasAnyRole("ADMIN")
+                    .antMatchers("/register").permitAll()
                     .anyRequest()
                         .authenticated()
                     .and()
@@ -49,6 +50,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
         ;
     } // @formatter:on
+
+
 
     @Bean
     PasswordEncoder passwordEncoder() {

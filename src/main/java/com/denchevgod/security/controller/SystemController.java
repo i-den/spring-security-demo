@@ -49,7 +49,7 @@ public class SystemController {
         }
         userService.saveNewUser(user);
         redirect.addFlashAttribute("successfulRegistration", "Successfully Registered a new User - " + user.getUsername());
-        return "redirect:/";
+        return "redirect:/login";
     }
     //-------------- Register -----------------------------------------------
 
