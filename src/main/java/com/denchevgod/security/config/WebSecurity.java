@@ -24,6 +24,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off
         auth
                 .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder())
 
         ;
     } // @formatter:on
@@ -57,7 +58,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
         ;
     } // @formatter:on
-
 
 
     @Bean

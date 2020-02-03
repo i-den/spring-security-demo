@@ -2,15 +2,19 @@ package com.denchevgod.security.service;
 
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // TODO: Fix Exception
@@ -20,6 +24,7 @@ public class UserServiceImpl implements UserService {
         if (persistedUser != null) {
             throw new RuntimeException("Username is taken");
         }
+        userToSave.setPassword(passwordEncoder.encode(userToSave.getPassword()));
         return userRepository.save(userToSave);
     }
 
@@ -29,6 +34,7 @@ public class UserServiceImpl implements UserService {
         if (persistedUser != null) {
             throw new RuntimeException("Username is taken");
         }
+        userToUpdate.setPassword(passwordEncoder.encode(userToUpdate.getPassword()));
         return userRepository.save(userToUpdate);
     }
 }
