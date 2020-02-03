@@ -31,9 +31,21 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                     .and()
 
                 .formLogin()
+                    .loginPage("/login").permitAll()
+                    .loginProcessingUrl("/login")
                     .and()
 
-                .httpBasic()
+                .logout().permitAll()
+                    .logoutUrl("/logout")
+                    .clearAuthentication(true)
+                    // .deleteCookies()
+                    .invalidateHttpSession(true)
+                    .logoutSuccessUrl("/login?logout")
+
+                    .and()
+
+                .csrf()
+                    .disable()
 
         ;
     } // @formatter:on
