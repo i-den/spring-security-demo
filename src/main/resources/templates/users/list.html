@@ -21,7 +21,7 @@
             <tr th:each="user : ${users}">
                 <td th:text="${user.username}"></td>
                 <td><a th:href="@{'/users/' + ${user.id}}">View</a></td>
-                <td><a href="#">Update (To Do)</a></td>
+                <td><a th:href="@{'/users/edit/' + ${user.id}}">Update</a></td>
                 <td><a th:href="@{'/users/delete/' + ${user.id}}">Delete</a></td>
             </tr>
         </tbody>

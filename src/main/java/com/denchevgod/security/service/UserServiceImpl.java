@@ -18,8 +18,17 @@ public class UserServiceImpl implements UserService {
     public User saveNewUser(User userToSave) {
         User persistedUser = userRepository.findByUsername(userToSave.getUsername());
         if (persistedUser != null) {
-            throw new RuntimeException("Username exists");
+            throw new RuntimeException("Username is taken");
         }
         return userRepository.save(userToSave);
+    }
+
+    @Override
+    public User updateUser(User userToUpdate) {
+        User persistedUser = userRepository.findByUsername(userToUpdate.getUsername());
+        if (persistedUser != null) {
+            throw new RuntimeException("Username is taken");
+        }
+        return userRepository.save(userToUpdate);
     }
 }

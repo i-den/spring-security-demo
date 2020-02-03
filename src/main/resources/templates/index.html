@@ -9,5 +9,6 @@
 
 <p th:if="${successfulRegistration}" th:text="${successfulRegistration}">"Successfully Registered a new User - " + user.getUsername()</p>
 <p th:if="${deletedUser}" th:text="${deletedUser}">"Successfully Registered a new User - " + user.getUsername()</p>
+<p th:if="${updateSuccessful}" th:text="${updateSuccessful}">"Successfully updated User " + user.getUsername()</p>
 </body>
 </html>
