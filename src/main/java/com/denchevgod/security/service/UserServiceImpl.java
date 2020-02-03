@@ -2,7 +2,6 @@ package com.denchevgod.security.service;
 
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
