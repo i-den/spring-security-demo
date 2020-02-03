@@ -7,10 +7,19 @@
 <body>
 <form method="POST" th:action="@{/login}">
     <p>
-        <input type="text" name="username">
+        <label>Username:
+            <input type="text" name="username">
+        </label>
     </p>
     <p>
-        <input type="password" name="password">
+        <label>Password:
+            <input type="password" name="password">
+        </label>
+    </p>
+    <p>
+        <label>Remember Me:
+            <input type="checkbox" name="remember-me">
+        </label>
     </p>
     <button type="submit">Login</button>
 </form>

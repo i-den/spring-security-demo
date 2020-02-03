@@ -44,6 +44,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     .and()
 
+                .rememberMe()
+                    .and()
+
                 .logout().permitAll()
                     .logoutUrl("/logout")
                     .clearAuthentication(true)
