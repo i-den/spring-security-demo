@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Spring Security Intro</title>
@@ -9,10 +9,11 @@
     <nav>
         <ul>
             <li><a th:href="@{'/'}">Home</a></li>
-            <li><a th:href="@{'/register'}">Register</a></li>
-            <li><a th:href="@{'/login'}">Login</a></li>
-            <li><a th:href="@{'/users'}">List Users</a></li>
-            <li><a th:href="@{'/logout'}">Logout</a></li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{'/register'}">Register</a></li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{'/login'}">Login</a></li>
+            <li sec:authorize="isFullyAuthenticated()"><a th:href="@{'/users'}">List Users</a></li>
+            <li sec:authorize="isFullyAuthenticated()"><a th:href="@{'/profile'}">My Profile</a></li>
+            <li sec:authorize="isFullyAuthenticated()"><a th:href="@{'/logout'}">Logout</a></li>
         </ul>
     </nav>
 </header>

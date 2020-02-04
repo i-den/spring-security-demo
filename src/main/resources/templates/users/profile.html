@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+</head>
+<body>
+<header th:replace="partials/header :: header"></header>
+<section>
+    <h2>Profile</h2>
+    <p>Username with principal.username <span sec:authentication="principal.username">Username</span></p>
+
+    <p>Username with name <span sec:authentication="name">Name</span></p>
+
+    <p>User roles with principal.authorities <span sec:authentication="principal.authorities"></span></p>
+
+    <p>User roles with authorities <span sec:authentication="authorities"></span></p>
+
+</section>
+</body>
+</html>
