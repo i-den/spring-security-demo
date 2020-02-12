@@ -2,6 +2,7 @@ package com.denchevgod.security.controller;
 
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,7 @@ public class SystemController {
 
 
     //-------------- Login --------------------------------------------------
+    @PreAuthorize("isAnonymous()")
     @RequestMapping(path = "login",method = RequestMethod.GET)
     public String login() {
         return "system/login";
@@ -36,11 +38,13 @@ public class SystemController {
 
 
     //-------------- Register -----------------------------------------------
+    @PreAuthorize("isAnonymous()")
     @RequestMapping(path = "register",method = RequestMethod.GET)
     public String register(@ModelAttribute("user") User user) {
         return "system/register";
     }
 
+    @PreAuthorize("isAnonymous()")
     @RequestMapping(path = "register", method = RequestMethod.POST)
     public String handleRegister(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirect) {
         if (bindingResult.hasErrors()) {

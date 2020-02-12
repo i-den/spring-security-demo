@@ -3,6 +3,7 @@ package com.denchevgod.security.controller;
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.repository.UserRepository;
 import com.denchevgod.security.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,6 +68,7 @@ public class UserController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") String id, RedirectAttributes redirect) {
         User userToDelete = userRepository.findById(Long.valueOf(id)).orElse(null);
