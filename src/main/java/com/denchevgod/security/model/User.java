@@ -21,12 +21,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Cannot be null")
+    @NotNull(message = "Username Cannot be null")
     @Size(min = 1, message = "Username is required")
     private String username;
 
     private String password;
 
+    @NotNull(message = "Age Cannot be null")
     @Min(value = 0, message = "Must be above 0")
     @Max(value = 100, message = "Must be below 100")
     private Integer age;
