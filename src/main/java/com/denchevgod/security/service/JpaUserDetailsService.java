@@ -2,15 +2,11 @@ package com.denchevgod.security.service;
 
 import com.denchevgod.security.model.User;
 import com.denchevgod.security.repository.UserRepository;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
@@ -34,15 +30,7 @@ public class JpaUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 true,
-                createAuthority("ROLE_USER")
+                AuthorityUtils.createAuthorityList("ROLE_USER")
         );
-    }
-
-    private List<GrantedAuthority> createAuthority(String... authorities) {
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>(authorities.length);
-        for (String authority : authorities) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(authority));
-        }
-        return grantedAuthorities;
     }
 }
