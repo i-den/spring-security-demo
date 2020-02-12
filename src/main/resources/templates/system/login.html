@@ -5,6 +5,7 @@
     <title>Login</title>
 </head>
 <body>
+<header th:replace="partials/header :: header"></header>
 <form method="POST" th:action="@{/login}">
     <p>
         <label>Username:

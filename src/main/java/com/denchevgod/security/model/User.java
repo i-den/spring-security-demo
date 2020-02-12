@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,7 +25,10 @@ public class User {
     @Size(min = 1, message = "Username is required")
     private String username;
 
-
     private String password;
+
+    @Min(value = 0, message = "Must be above 0")
+    @Max(value = 100, message = "Must be below 100")
+    private Integer age;
 
 }

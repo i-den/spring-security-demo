@@ -17,6 +17,12 @@
             <span th:if="${#fields.hasErrors('username')}" th:text="${#fields.errors('username')}">Username Error</span>
         </p>
         <p>
+            <label>Age:
+                <input type="text" th:field="*{age}">
+            </label>
+            <span th:if="${#fields.hasErrors('age')}" th:text="${#fields.errors('age')}">Age Error</span>
+        </p>
+        <p>
             <label>Password:
                 <input type="password" th:field="*{password}">
             </label>
