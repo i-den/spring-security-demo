@@ -47,6 +47,7 @@ public class SystemController {
         return "system/register";
     }
 
+
     @PreAuthorize("isAnonymous()")
     @RequestMapping(path = "register", method = RequestMethod.POST)
     public String handleRegister(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirect) {
@@ -59,6 +60,7 @@ public class SystemController {
         return "redirect:/login";
     }
     //-------------- Register -----------------------------------------------
+
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
